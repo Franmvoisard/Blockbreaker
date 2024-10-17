@@ -35,7 +35,10 @@
 
 # Ignore vcpkg directory (if vcpkg is inside your project folder)
 vcpkg_installed/
+
+# Ignore build files
 x64
+blockbreaker
 
 # Ignore vcpkg build trees, downloaded files, and installed packages
 vcpkg/installed/
