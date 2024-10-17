@@ -1,0 +1,55 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+.idea
+
+# Ignore vcpkg directory (if vcpkg is inside your project folder)
+vcpkg_installed/
+x64
+
+# Ignore vcpkg build trees, downloaded files, and installed packages
+vcpkg/installed/
+vcpkg/downloads/
+vcpkg/buildtrees/
+
+# Ignore CMake configuration files
+CMakeCache.txt
+CMakeFiles/
+
+# Ignore Visual Studio specific files (if using Visual Studio)
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
