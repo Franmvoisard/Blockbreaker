@@ -2,7 +2,7 @@
 #include "../GameFramework/InputManager.h"
 #include "../GameFramework/TimeManager.h"
 
-Paddle::Paddle(const Vector2f position, const float rotation, const Vector2f scale, const float movement_speed, std::unique_ptr<Drawable> drawable) : GameObject(position, rotation, scale, std::move(drawable))
+Paddle::Paddle(const Vector2f position, const float rotation, const Vector2f scale, const float movement_speed, Drawable& drawable) : GameObject(position, rotation, scale, drawable)
 {
      m_speed = movement_speed;
 }

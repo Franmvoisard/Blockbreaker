@@ -141,6 +141,8 @@
     <ClCompile Include="GameFramework\InputManager.cpp" />
     <ClCompile Include="GameFramework\TimeManager.cpp" />
     <ClCompile Include="GameObjects\Paddle.cpp" />
+    <ClCompile Include="GameObjects\TextObject.cpp" />
+    <ClCompile Include="GameObjects\Utilities\FpsCounter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blockbreaker.h" />
@@ -149,6 +151,8 @@
     <ClInclude Include="GameFramework\InputManager.h" />
     <ClInclude Include="GameFramework\TimeManager.h" />
     <ClInclude Include="GameObjects\Paddle.h" />
+    <ClInclude Include="GameObjects\TextObject.h" />
+    <ClInclude Include="GameObjects\Utilities\FpsCounter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,27 +6,31 @@
 #include "GameFramework/InputManager.h"
 #include "GameFramework/TimeManager.h"
 #include "GameObjects/Paddle.h"
+#include "GameObjects/TextObject.h"
+#include "GameObjects/Utilities/FpsCounter.h"
 
 unsigned int screenWidth, screenHeight;
 Texture textureAtlas = Texture();
+Text fpstext = Text();
 
 int main()
 {
     screenWidth = VideoMode::getDesktopMode().width;
     screenHeight = VideoMode::getDesktopMode().height;
     RenderWindow window(VideoMode(screenWidth, screenHeight, 32), "Block breaker");
+    window.setFramerateLimit(60);
     
     if(!textureAtlas.loadFromFile("./resources/sprites/spritesheet.png"))
     {
         throw std::runtime_error("Failed to load spritesheet.png");
     }
-    const IntRect paddleSprite(0,24,80,16);
-
-    std::unique_ptr<Drawable> sprite = std::make_unique<Sprite>(textureAtlas, paddleSprite);
-    std::shared_ptr<GameObject> paddle = std::make_shared<Paddle>(Vector2f(0,0),0,Vector2f(3,3), 800, std::move(sprite));    
-    // Render queue to store shapes
+    
+    Drawable* sprite = new Sprite(textureAtlas, IntRect (0,24,80,16));
+    std::shared_ptr<GameObject> paddle = std::make_shared<Paddle>(Vector2f(screenWidth * 0.5f,screenHeight * 0.9f),0,Vector2f(3,3), 800, *sprite);    
+    std::shared_ptr<FpsCounter> fpsCounter = std::make_shared<FpsCounter>(Vector2f(screenWidth * 0.9, 0), 0, Vector2f(1,1));
     std::vector<std::shared_ptr<GameObject>> renderQueue;
     renderQueue.push_back(paddle);
+    renderQueue.push_back(fpsCounter);
 
     // Main game loop
     while (window.isOpen())
@@ -46,8 +50,6 @@ int main()
         window.clear();
         TimeManager::update();
         
-        // Draw all shapes in the render queue
-    
         for (const auto& drawable : renderQueue)
         {
             drawable->Tick();
