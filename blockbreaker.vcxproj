@@ -136,11 +136,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="blockbreaker.cpp" />
+    <ClCompile Include="GameFramework\GameObject.cpp" />
+    <ClCompile Include="GameFramework\InputManager.cpp" />
+    <ClCompile Include="GameFramework\TimeManager.cpp" />
     <ClCompile Include="GameObjects\Paddle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blockbreaker.h" />
     <ClInclude Include="GameFramework\GameObject.h" />
+    <ClInclude Include="GameFramework\InputManager.h" />
+    <ClInclude Include="GameFramework\TimeManager.h" />
     <ClInclude Include="GameObjects\Paddle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

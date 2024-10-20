@@ -1,13 +1,18 @@
 #pragma once
+#include <memory>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Transformable.hpp>
 #include <SFML/System/Vector2.hpp>
 using namespace sf;
 
-class game_object
+class GameObject : public Drawable, public Transformable
 {
     public:
-        virtual ~game_object() = default;
-        game_object(Vector2f position, Vector2f rotation, Vector2f scale);
-        Vector2f m_position;
-        Vector2f m_scale;
-        Vector2f m_rotation;
+        GameObject(Vector2f position, float rotation, Vector2f scale, std::unique_ptr<Drawable> drawable);
+        
+        virtual ~GameObject();
+        virtual void Tick();
+        std::unique_ptr<Drawable> m_drawable;
+        void draw(RenderTarget& target, RenderStates states) const override;
+    
 };
