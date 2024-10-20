@@ -23,7 +23,7 @@ int main()
     const IntRect paddleSprite(0,24,80,16);
 
     std::unique_ptr<Drawable> sprite = std::make_unique<Sprite>(textureAtlas, paddleSprite);
-    std::shared_ptr<GameObject> paddle = std::make_shared<Paddle>(Vector2f(0,0),0,Vector2f(3,3), 200, std::move(sprite));    
+    std::shared_ptr<GameObject> paddle = std::make_shared<Paddle>(Vector2f(0,0),0,Vector2f(3,3), 800, std::move(sprite));    
     // Render queue to store shapes
     std::vector<std::shared_ptr<GameObject>> renderQueue;
     renderQueue.push_back(paddle);
@@ -32,7 +32,7 @@ int main()
     while (window.isOpen())
     {
         // Handle events
-        sf::Event event;
+        Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
