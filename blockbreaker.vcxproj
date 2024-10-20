@@ -136,6 +136,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="blockbreaker.cpp" />
+    <ClCompile Include="GameFramework\FontManager.cpp" />
     <ClCompile Include="GameFramework\GameObject.cpp" />
     <ClCompile Include="GameFramework\InputManager.cpp" />
     <ClCompile Include="GameFramework\TimeManager.cpp" />
@@ -143,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blockbreaker.h" />
+    <ClInclude Include="GameFramework\FontManager.h" />
     <ClInclude Include="GameFramework\GameObject.h" />
     <ClInclude Include="GameFramework\InputManager.h" />
     <ClInclude Include="GameFramework\TimeManager.h" />
