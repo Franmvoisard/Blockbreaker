@@ -11,6 +11,7 @@
 
 unsigned int screenWidth, screenHeight;
 Texture textureAtlas = Texture();
+Texture textureBackground = Texture();
 Text fpstext = Text();
 
 int main()
@@ -22,13 +23,22 @@ int main()
     
     if(!textureAtlas.loadFromFile("./resources/sprites/spritesheet.png"))
     {
-        throw std::runtime_error("Failed to load spritesheet.png");
+        throw std::runtime_error("Failed to load main spritesheet");
+    }
+    if(!textureBackground.loadFromFile("./resources/sprites/background-atlas.png"))
+    {
+        throw std::runtime_error("Failed to load background spritesheet");
     }
     
-    Drawable* sprite = new Sprite(textureAtlas, IntRect (0,24,80,16));
-    std::shared_ptr<GameObject> paddle = std::make_shared<Paddle>(Vector2f(screenWidth * 0.5f,screenHeight * 0.9f),0,Vector2f(3,3), 800, *sprite);    
+    Sprite* paddleSprite = new Sprite(textureAtlas, IntRect (0,24,80,16));
+    paddleSprite->setOrigin(80*0.5f, 16 * 0.5f);
+    Sprite* backgroundSpr = new Sprite(textureBackground, IntRect (0,0,228,246));
+    backgroundSpr->setOrigin(228 * 0.5f,246 * 0.5f);
+    std::shared_ptr<GameObject> background = std::make_shared<GameObject>(Vector2f(screenWidth * 0.5f,screenHeight * 0.5f),0,Vector2f(screenHeight/246,screenHeight/246), *backgroundSpr);
+    std::shared_ptr<GameObject> paddle = std::make_shared<Paddle>(Vector2f(screenWidth * 0.5f,screenHeight * 0.9f),0,Vector2f(3,3), 800, *paddleSprite);    
     std::shared_ptr<FpsCounter> fpsCounter = std::make_shared<FpsCounter>(Vector2f(screenWidth * 0.9, 0), 0, Vector2f(1,1));
     std::vector<std::shared_ptr<GameObject>> renderQueue;
+    renderQueue.push_back(background);
     renderQueue.push_back(paddle);
     renderQueue.push_back(fpsCounter);
 
