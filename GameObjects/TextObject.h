@@ -12,5 +12,5 @@ class TextObject : public GameObject
         ~TextObject();
     
     protected:
-        Text* m_text;
+        std::shared_ptr<Text> m_text;
 };

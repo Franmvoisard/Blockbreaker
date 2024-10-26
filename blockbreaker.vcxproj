@@ -141,6 +141,7 @@
     <ClCompile Include="GameFramework\InputManager.cpp" />
     <ClCompile Include="GameFramework\TimeManager.cpp" />
     <ClCompile Include="GameObjects\Paddle.cpp" />
+    <ClCompile Include="GameObjects\SpriteObject.cpp" />
     <ClCompile Include="GameObjects\TextObject.cpp" />
     <ClCompile Include="GameObjects\Utilities\FpsCounter.cpp" />
   </ItemGroup>
@@ -151,6 +152,7 @@
     <ClInclude Include="GameFramework\InputManager.h" />
     <ClInclude Include="GameFramework\TimeManager.h" />
     <ClInclude Include="GameObjects\Paddle.h" />
+    <ClInclude Include="GameObjects\SpriteObject.h" />
     <ClInclude Include="GameObjects\TextObject.h" />
     <ClInclude Include="GameObjects\Utilities\FpsCounter.h" />
   </ItemGroup>
