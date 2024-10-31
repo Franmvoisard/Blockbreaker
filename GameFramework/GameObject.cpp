@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics/RenderTarget.hpp>
 
-GameObject::GameObject(const Vector2f position, const float rotation, const Vector2f scale, const std::shared_ptr<Drawable>& drawable)
+GameObject::GameObject(const std::shared_ptr<Drawable>& drawable, const Vector2f position, const float rotation, const Vector2f scale)
 {
     m_drawable = drawable;
     setPosition(position);

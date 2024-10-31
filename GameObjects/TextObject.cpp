@@ -3,7 +3,7 @@
 
 #include "../GameFramework/FontManager.h"
 
-TextObject::TextObject(const Vector2f& position, float rotation, const Vector2f& scale) : GameObject(position, rotation, scale, std::make_shared<Text>())
+TextObject::TextObject(const Vector2f& position, float rotation, const Vector2f& scale) : GameObject(std::make_shared<Text>(), position, rotation, scale )
 {
     m_text = std::dynamic_pointer_cast<Text>(m_drawable);
     m_text->setFont(*FontManager::GetDefaultFont());
