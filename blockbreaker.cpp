@@ -1,5 +1,3 @@
-#include <complex>
-#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include <vector>
@@ -30,7 +28,7 @@ void ProcessInput(RenderWindow& window)
     }
 }
 
-void UpdateGameObjects(std::vector<std::shared_ptr<GameObject>> renderQueue)
+void UpdateGameObjects(const std::vector<std::shared_ptr<GameObject>>& renderQueue)
 {
     TimeManager::update();
     for (const auto& drawable : renderQueue)
@@ -39,7 +37,7 @@ void UpdateGameObjects(std::vector<std::shared_ptr<GameObject>> renderQueue)
     }
 }
 
-void RenderObjects(RenderWindow& window, std::vector<std::shared_ptr<GameObject>> renderQueue)
+void RenderObjects(RenderWindow& window, const std::vector<std::shared_ptr<GameObject>>& renderQueue)
 {
     window.clear();
     for (const auto& drawable : renderQueue)
@@ -70,16 +68,16 @@ int main()
     std::shared_ptr<SpriteObject> background = std::make_shared<SpriteObject>(textureBackground, IntRect (0,0,228,246), Vector2f(-1,-1), DisplayUtilities::GetCenter(), 0 , Vector2f(DisplayUtilities::GetSize().y / 246, DisplayUtilities::GetSize().y / 246));
     std::shared_ptr<GameObject> paddle = std::make_shared<Paddle>(Vector2f(screenWidth * 0.5f,screenHeight * 0.9f),0,Vector2f(3,3), 800, paddleSprite);    
     std::shared_ptr<FpsCounter> fpsCounter = std::make_shared<FpsCounter>(Vector2f(screenWidth * 0.9, 0), 0, Vector2f(1,1));
-    std::vector<std::shared_ptr<GameObject>> renderQueue;
-    renderQueue.push_back(background);
-    renderQueue.push_back(paddle);
-    renderQueue.push_back(fpsCounter);
+    std::vector<std::shared_ptr<GameObject>> gameObjects;
+    gameObjects.push_back(background);
+    gameObjects.push_back(paddle);
+    gameObjects.push_back(fpsCounter);
     
     while (window.isOpen())
     {
         ProcessInput(window);
-        UpdateGameObjects(renderQueue);
-        RenderObjects(window, renderQueue);
+        UpdateGameObjects(gameObjects);
+        RenderObjects(window, gameObjects);
     }
 
     return 0;
