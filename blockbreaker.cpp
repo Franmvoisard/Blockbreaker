@@ -4,6 +4,7 @@
 
 #include "GameFramework/DisplayUtilities.h"
 #include "GameFramework/GameObject.h"
+#include "GameFramework/GameObjectManager.h"
 #include "GameFramework/InputManager.h"
 #include "GameFramework/TimeManager.h"
 #include "GameObjects/Paddle.h"
@@ -68,16 +69,16 @@ int main()
     std::shared_ptr<SpriteObject> background = std::make_shared<SpriteObject>(textureBackground, IntRect (0,0,228,246), Vector2f(-1,-1), DisplayUtilities::GetCenter(), 0 , Vector2f(DisplayUtilities::GetSize().y / 246, DisplayUtilities::GetSize().y / 246));
     std::shared_ptr<GameObject> paddle = std::make_shared<Paddle>(Vector2f(screenWidth * 0.5f,screenHeight * 0.9f),0,Vector2f(3,3), 800, paddleSprite);    
     std::shared_ptr<FpsCounter> fpsCounter = std::make_shared<FpsCounter>(Vector2f(screenWidth * 0.9, 0), 0, Vector2f(1,1));
-    std::vector<std::shared_ptr<GameObject>> gameObjects;
-    gameObjects.push_back(background);
-    gameObjects.push_back(paddle);
-    gameObjects.push_back(fpsCounter);
+  
+    GameObjectManager::Add(background);
+    GameObjectManager::Add(paddle);
+    GameObjectManager::Add(fpsCounter);
     
     while (window.isOpen())
     {
         ProcessInput(window);
-        UpdateGameObjects(gameObjects);
-        RenderObjects(window, gameObjects);
+        UpdateGameObjects(GameObjectManager::GetObjects());
+        RenderObjects(window, GameObjectManager::GetObjects());
     }
 
     return 0;

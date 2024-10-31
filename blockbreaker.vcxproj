@@ -139,6 +139,7 @@
     <ClCompile Include="GameFramework\DisplayUtilities.cpp" />
     <ClCompile Include="GameFramework\FontManager.cpp" />
     <ClCompile Include="GameFramework\GameObject.cpp" />
+    <ClCompile Include="GameFramework\GameObjectManager.cpp" />
     <ClCompile Include="GameFramework\InputManager.cpp" />
     <ClCompile Include="GameFramework\TimeManager.cpp" />
     <ClCompile Include="GameObjects\Paddle.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="GameFramework\DisplayUtilities.h" />
     <ClInclude Include="GameFramework\FontManager.h" />
     <ClInclude Include="GameFramework\GameObject.h" />
+    <ClInclude Include="GameFramework\GameObjectManager.h" />
     <ClInclude Include="GameFramework\InputManager.h" />
     <ClInclude Include="GameFramework\TimeManager.h" />
     <ClInclude Include="GameObjects\Paddle.h" />
