@@ -141,6 +141,8 @@
     <ClCompile Include="GameFramework\GameObject.cpp" />
     <ClCompile Include="GameFramework\GameObjectManager.cpp" />
     <ClCompile Include="GameFramework\InputManager.cpp" />
+    <ClCompile Include="GameFramework\Misc\ResourceId.cpp" />
+    <ClCompile Include="GameFramework\ResourceManager.cpp" />
     <ClCompile Include="GameFramework\TimeManager.cpp" />
     <ClCompile Include="GameObjects\Paddle.cpp" />
     <ClCompile Include="GameObjects\SpriteObject.cpp" />
@@ -154,6 +156,8 @@
     <ClInclude Include="GameFramework\GameObject.h" />
     <ClInclude Include="GameFramework\GameObjectManager.h" />
     <ClInclude Include="GameFramework\InputManager.h" />
+    <ClInclude Include="GameFramework\Misc\ResourceId.h" />
+    <ClInclude Include="GameFramework\ResourceManager.h" />
     <ClInclude Include="GameFramework\TimeManager.h" />
     <ClInclude Include="GameObjects\Paddle.h" />
     <ClInclude Include="GameObjects\SpriteObject.h" />

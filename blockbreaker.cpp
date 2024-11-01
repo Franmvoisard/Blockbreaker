@@ -6,15 +6,15 @@
 #include "GameFramework/GameObject.h"
 #include "GameFramework/GameObjectManager.h"
 #include "GameFramework/InputManager.h"
+#include "GameFramework/ResourceManager.h"
 #include "GameFramework/TimeManager.h"
+#include "GameFramework/Misc/ResourceId.h"
 #include "GameObjects/Paddle.h"
 #include "GameObjects/SpriteObject.h"
 #include "GameObjects/TextObject.h"
 #include "GameObjects/Utilities/FpsCounter.h"
 
 unsigned int screenWidth, screenHeight;
-Texture textureAtlas = Texture();
-Texture textureBackground = Texture();
 Text fpstext = Text();
 
 void ProcessInput(RenderWindow& window)
@@ -54,22 +54,19 @@ int main()
     screenHeight = VideoMode::getDesktopMode().height;
     RenderWindow window(VideoMode(screenWidth, screenHeight, 32), "Block breaker");
     window.setFramerateLimit(60);
-    
-    if(!textureAtlas.loadFromFile("./resources/sprites/spritesheet.png"))
-    {
-        throw std::runtime_error("Failed to load main spritesheet");
-    }
-    if(!textureBackground.loadFromFile("./resources/sprites/background-atlas.png"))
-    {
-        throw std::runtime_error("Failed to load background spritesheet");
-    }
-    
-    std::shared_ptr<Sprite> paddleSprite = std::make_shared<Sprite>(textureAtlas, IntRect (0,24,80,16));
+
+    //Load resources
+    ResourceManager::LoadTexture("./resources/sprites/spritesheet.png", ResourceId::main_spritesheet);
+    ResourceManager::LoadTexture("./resources/sprites/background-atlas.png", ResourceId::backgrounds_spritesheet);
+
+    //Create level
+    std::shared_ptr<Sprite> paddleSprite = std::make_shared<Sprite>(*ResourceManager::GetTextureById(ResourceId::main_spritesheet), IntRect (0,24,80,16));
     paddleSprite->setOrigin(80 * 0.5f, 16 * 0.5f);
-    std::shared_ptr<SpriteObject> background = std::make_shared<SpriteObject>(textureBackground, IntRect (0,0,228,246), Vector2f(-1,-1), DisplayUtilities::GetCenter(), 0 , Vector2f(DisplayUtilities::GetSize().y / 246, DisplayUtilities::GetSize().y / 246));
+    std::shared_ptr<SpriteObject> background = std::make_shared<SpriteObject>(*ResourceManager::GetTextureById(ResourceId::backgrounds_spritesheet), IntRect (0,0,228,246), Vector2f(-1,-1), DisplayUtilities::GetCenter(), 0 , Vector2f(DisplayUtilities::GetSize().y / 246, DisplayUtilities::GetSize().y / 246));
     std::shared_ptr<GameObject> paddle = std::make_shared<Paddle>(Vector2f(screenWidth * 0.5f,screenHeight * 0.9f),0,Vector2f(3,3), 800, paddleSprite);    
     std::shared_ptr<FpsCounter> fpsCounter = std::make_shared<FpsCounter>(Vector2f(screenWidth * 0.9, 0), 0, Vector2f(1,1));
-  
+
+    //Add gameObjects to queue
     GameObjectManager::Add(background);
     GameObjectManager::Add(paddle);
     GameObjectManager::Add(fpsCounter);
